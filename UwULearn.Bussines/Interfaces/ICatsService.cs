@@ -1,6 +1,6 @@
 ﻿namespace UwULearn.Bussines.Interfaces;
 
-public interface ICatsSrvice
+public interface ICatsService
 {
     public Task<string> Rename(int catId, string newName);
     public Task HealthUpdate(int catId, int newHealth);
