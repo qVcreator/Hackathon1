@@ -1,0 +1,184 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.API\\UwULearn.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.API\\UwULearn.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.API\\UwULearn.API.csproj",
+        "projectName": "UwULearn.API",
+        "projectPath": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.API\\UwULearn.API.csproj",
+        "packagesPath": "C:\\Users\\aysul\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\aysul\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Bussines\\UwULearn.Bussines.csproj": {
+                "projectPath": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Bussines\\UwULearn.Bussines.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Bussines\\UwULearn.Bussines.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Bussines\\UwULearn.Bussines.csproj",
+        "projectName": "UwULearn.Bussines",
+        "projectPath": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Bussines\\UwULearn.Bussines.csproj",
+        "packagesPath": "C:\\Users\\aysul\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Bussines\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\aysul\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Data\\UwULearn.Data.csproj": {
+                "projectPath": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Data\\UwULearn.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Data\\UwULearn.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Data\\UwULearn.Data.csproj",
+        "projectName": "UwULearn.Data",
+        "projectPath": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Data\\UwULearn.Data.csproj",
+        "packagesPath": "C:\\Users\\aysul\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\aysul\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "WLiNTErFduuIEB1qDqyJU23neEIBqdT7W4WkqimSR8nvuzl2DuQDmy3L1GHBeUK1dZ4lOupAH1cucqLrP+6tog==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\aysul\\RiderProjects\\UwULearn2\\UwULearn.API\\UwULearn.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\aysul\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\aysul\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\aysul\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\aysul\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\aysul\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\aysul\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

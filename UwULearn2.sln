@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwULearn.API", "UwULearn.API\UwULearn.API.csproj", "{AFF4409D-8DDA-44A8-9015-1338F75FBA37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwULearn.Bussines", "UwULearn.Bussines\UwULearn.Bussines.csproj", "{4BE6B46E-4996-47FE-A063-D7A8EFD92F5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwULearn.Data", "UwULearn.Data\UwULearn.Data.csproj", "{F20AB63F-4B43-4BFE-9F58-24AA8E38666C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFF4409D-8DDA-44A8-9015-1338F75FBA37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF4409D-8DDA-44A8-9015-1338F75FBA37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF4409D-8DDA-44A8-9015-1338F75FBA37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF4409D-8DDA-44A8-9015-1338F75FBA37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BE6B46E-4996-47FE-A063-D7A8EFD92F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BE6B46E-4996-47FE-A063-D7A8EFD92F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BE6B46E-4996-47FE-A063-D7A8EFD92F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BE6B46E-4996-47FE-A063-D7A8EFD92F5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F20AB63F-4B43-4BFE-9F58-24AA8E38666C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F20AB63F-4B43-4BFE-9F58-24AA8E38666C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F20AB63F-4B43-4BFE-9F58-24AA8E38666C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F20AB63F-4B43-4BFE-9F58-24AA8E38666C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
