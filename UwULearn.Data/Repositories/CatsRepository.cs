@@ -5,7 +5,12 @@ namespace UwULearn.Data.Repositories;
 
 public class CatsRepository : ICatsRepository
 {
-    //private readonly UwuLearnContext
+    private readonly UwuLearnContext _context;
+
+    public CatsRepository(UwuLearnContext context)
+    {
+        _context = context;
+    }   
 
     public Task<int> CreateCat(Cat newCat)
     {
