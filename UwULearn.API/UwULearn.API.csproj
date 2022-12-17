@@ -13,8 +13,6 @@
 
     <ItemGroup>
       <Folder Include="CustomExceptionMiddleWare" />
-      <Folder Include="Infrastructure" />
-      <Folder Include="Models" />
     </ItemGroup>
 
     <ItemGroup>

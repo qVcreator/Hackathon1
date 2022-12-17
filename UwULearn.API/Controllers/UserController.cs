@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UwULearn.Data.Enums;
+using UwULearn2.API.Extensions;
+using UwULearn2.API.Infrastructure;
+using UwULearn2.API.Models.Requests;
 
 namespace UwULearn2.API.Controllers;
 
@@ -15,32 +19,34 @@ public class UserController : Controller
     }
 
     [HttpPatch]
-    [Authorize]
+    [AuthorizeByRole(Role.Admin, Role.User)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task UpdatePassword()
+    public async Task<ActionResult> UpdatePassword([FromBody] UpdatePasswordRequest updatePassword)
     {
-        
+        return NoContent();
     }
 
-    [HttpPatch]
-    [Authorize]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    public async Task UpdateCatSkin( [FromRoute] int skinId)
-    {
-        //get userId from token 
-    }
-
-    
-    [HttpPatch]
+    [HttpPatch("cat-skin/{skinId}")]
+    [AuthorizeByRole(Role.Admin, Role.User)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task AddCourse(int userId, int courseId)
+    public async Task<ActionResult> UpdateCatSkin([FromRoute] int skinId)
     {
-        
+        var userId = this.GetUserId();
+        return NoContent();
+    }
+
+    
+    [HttpPatch("course/{courseId}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task AddCourse([FromRoute] int courseId)
+    {
+        var userId = this.GetUserId();
     }
 }

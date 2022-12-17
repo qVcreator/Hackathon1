@@ -2,7 +2,7 @@ using UwULearn.Data.Entities;
 
 namespace UwULearn.Data.Interfaces;
 
-public interface ICourseRepository
+public interface ICoursesRepository
 {
     public Task AddLesson(Lesson newLesson);
     public Task DeleteLesson(int lessonId);
