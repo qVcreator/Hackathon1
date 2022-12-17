@@ -1,5 +1,8 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UwULearn.Bussines.Interfaces;
+using UwULearn.Data.Entities;
 using UwULearn.Data.Enums;
 using UwULearn2.API.Extensions;
 using UwULearn2.API.Infrastructure;
@@ -14,9 +17,13 @@ namespace UwULearn2.API.Controllers;
 [Route("[controller]")]
 public class CoursesController : Controller
 {
-    public CoursesController()
+    private readonly IMapper _mapper;
+    private readonly ICoursesService _coursesService;
+
+    public CoursesController(IMapper mapper, ICoursesService coursesService)
     {
-        //di
+        _mapper = mapper;
+        _coursesService = coursesService;
     }
 
     [HttpPatch("{courseId}/lesson/{lessonId}")]
@@ -26,7 +33,8 @@ public class CoursesController : Controller
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> AddLesson([FromRoute] int courseId, [FromRoute] int lessonId)
     {
-        return new NoContentResult();
+        await _coursesService.AddLesson(courseId, lessonId);
+        return NoContent();
     }
 
     [HttpDelete("{courseId}/lesson/{lessonId}")]
@@ -36,7 +44,8 @@ public class CoursesController : Controller
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> DeleteLesson([FromRoute]int lessonId, [FromRoute] int courseId)
     {
-        return new NoContentResult();
+        await _coursesService.DeleteLesson(courseId, lessonId);
+        return NoContent();
     }
 
     [HttpPut("{courseId}")]
@@ -46,7 +55,8 @@ public class CoursesController : Controller
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Update([FromRoute] int courseId, [FromBody] UpdateCourseRequest updateCourse)
     {
-        return new NoContentResult();
+        await _coursesService.Update(courseId, _mapper.Map<Course>(updateCourse));
+        return NoContent();
     }
 
     [HttpPost]
@@ -54,10 +64,8 @@ public class CoursesController : Controller
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
-    public async Task<ActionResult<int>> Add([FromBody] AddCourseRequest newCourse)
-    {
-        return Created(this.GetUri(), 1);
-    }
+    public async Task<ActionResult<int>> Add([FromBody] AddCourseRequest newCourse) =>
+        await _coursesService.Add(_mapper.Map<Course>(newCourse));
 
     [HttpGet("{couseId}")]
     [AuthorizeByRole(Role.Admin, Role.User)]
@@ -67,7 +75,8 @@ public class CoursesController : Controller
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<GetCourseAllInfoResponse>> Get([FromRoute] int courseId)
     {
-        return Ok();
+        var result = await _coursesService.Get(courseId);
+        return Ok(_mapper.Map<GetCourseAllInfoResponse>(result));
     }
 
     [HttpGet()]
@@ -78,6 +87,7 @@ public class CoursesController : Controller
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<List<GetAllCoursesResponse>>> GetAll()
     {
-        return Ok();
+        var result = await _coursesService.GetAll();
+        return Ok(_mapper.Map<List<GetAllCoursesResponse>>(result));
     }
 }

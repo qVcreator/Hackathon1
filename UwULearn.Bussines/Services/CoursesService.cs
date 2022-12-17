@@ -13,17 +13,17 @@ public class CoursesService : ICoursesService
         _coursesRepository = coursesRepository;
     }
 
-    public Task Add(Course newCourse)
+    public Task<int> Add(Course newCourse)
     {
         throw new NotImplementedException();
     }
 
-    public Task AddLesson(Lesson newLesson)
+    public Task AddLesson(int courseId, int lessonId)
     {
         throw new NotImplementedException();
     }
 
-    public Task DeleteLesson(int lessonId)
+    public Task DeleteLesson(int courseId, int lessonId)
     {
         throw new NotImplementedException();
     }
@@ -38,7 +38,7 @@ public class CoursesService : ICoursesService
         throw new NotImplementedException();
     }
 
-    public Task Update(Course updatedCourse)
+    public Task Update(int id, Course updatedCourse)
     {
         throw new NotImplementedException();
     }
