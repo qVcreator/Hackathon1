@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "335Wsgv/szrpqmP1kaRj+K6kgu7M6o+UVZW6UOsPRhUG/9JN6KnvJo9IuUKDSfjemxM3ObtVqGYRgkcGDywsAg==",
+  "dgSpecHash": "v1jTCo+umHC5M53Hx/oUSHA901hgeKyK/gnB86gH/05Xm9Anuyy2Bn6RMlmjcz77beKy17FCbv4WD3ISkGpxPg==",
   "success": true,
   "projectFilePath": "C:\\Pet\\Hackathon1\\UwULearn.API\\UwULearn.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\govnoZhopa\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.12\\microsoft.aspnetcore.authentication.jwtbearer.6.0.12.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",
