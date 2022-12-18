@@ -34,12 +34,16 @@ public class CoursesRepository : ICoursesRepository
 
     public async Task<Course> Get(int courseId)
     {
-        return await _context.Courses.FirstOrDefaultAsync(q => q.Id == courseId);
+        return await _context.Courses
+            .Include(c => c.Lessons)
+            .FirstOrDefaultAsync(q => q.Id == courseId);
     }
 
     public async Task<List<Course>> GetAll()
     {
-        return await _context.Courses.ToListAsync();
+        return await _context.Courses
+            .Include(c => c.Lessons)
+            .ToListAsync();
     }
 
     public async Task Update(Course updatedCourse)

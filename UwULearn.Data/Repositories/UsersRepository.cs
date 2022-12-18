@@ -33,12 +33,18 @@ public class UsersRepository : IUsersRepository
 
     public async Task<User> GetUserById(int id)
     {
-        return await _context.Users.FirstOrDefaultAsync(q => q.Id == id);
+        return await _context.Users
+            .Include(u => u.Courses)
+            .Include(u => u.Cat)
+            .FirstOrDefaultAsync(q => q.Id == id);
     }
 
     public async Task<User> GetUserByUsername(string username)
     {
-        return await _context.Users.FirstOrDefaultAsync(q => q.Username == username);
+        return await _context.Users
+            .Include(u => u.Courses)
+            .Include(u => u.Cat)
+            .FirstOrDefaultAsync(q => q.Username == username);
     }
 
     public async Task<bool> IsUserExist(string username)

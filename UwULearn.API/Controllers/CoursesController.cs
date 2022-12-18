@@ -67,7 +67,7 @@ public class CoursesController : Controller
     public async Task<ActionResult<int>> Add([FromBody] AddCourseRequest newCourse) =>
         await _coursesService.Add(_mapper.Map<Course>(newCourse));
 
-    [HttpGet("{couseId}")]
+    [HttpGet("{courseId}")]
     [AuthorizeByRole(Role.Admin, Role.User)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]

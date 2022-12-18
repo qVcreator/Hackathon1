@@ -33,12 +33,16 @@ public class LessonsRepository : ILessonsRepository
 
     public async Task<Lesson> GetLessonById(int id)
     {
-        return await _context.Lessons.FirstOrDefaultAsync(q => q.Id == id);
+        return await _context.Lessons
+            .Include(l => l.Task)
+            .FirstOrDefaultAsync(q => q.Id == id);
     }
 
     public async Task<List<Lesson>> GetLessons()
     {
-        return await _context.Lessons.ToListAsync();
+        return await _context.Lessons
+            .Include(l => l.Task)
+            .ToListAsync();
     }
 
     public async Task UpdateLesson(Lesson newLesson)

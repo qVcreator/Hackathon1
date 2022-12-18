@@ -12,6 +12,8 @@ public class UwuLearnContext : DbContext
     public DbSet<Skin> Skins { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Organization> Organizations { get; set; }
+    public DbSet<TaskEntity> Tasks { get;set; }
+    public DbSet<CourseProgress> CourseProgresses { get; set; }
 
     public UwuLearnContext(DbContextOptions<UwuLearnContext> options) 
         : base(options)
@@ -88,6 +90,17 @@ public class UwuLearnContext : DbContext
             entity.ToTable(nameof(TaskEntity));
 
             entity.HasKey(t => t.Id);
+        });
+
+        modelBuilder.Entity<CourseProgress>(entity =>
+        {
+            entity.ToTable(nameof(CourseProgress));
+
+            entity.HasKey(c => c.Id);
+
+            entity.HasOne(c => c.User);
+            entity.HasMany(c => c.FinishedCourses);
+            entity.HasMany(c => c.FinishedTasks);
         });
     }
 }
