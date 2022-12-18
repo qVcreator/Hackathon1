@@ -13,7 +13,7 @@ public class ChatService : IChatService
         _chatRepository = chatRepository;
     }
 
-    public Task PublishMessage(AllChatMessage message)
+    public Task<int> PublishMessage(AllChatMessage message)
     {
         throw new NotImplementedException();
     }

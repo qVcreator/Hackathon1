@@ -1,5 +1,6 @@
 ﻿using UwULearn.Bussines.Interfaces;
 using UwULearn.Data.Interfaces;
+using UwULearn.Data.Models;
 
 namespace UwULearn.Bussines.Services;
 
@@ -12,22 +13,22 @@ public class UsersService : IUsersService
         _usersRepository = usersRepository;
     }
 
-    public void AddCourse(int userId, int courseId)
+    public Task AddCourse(int userId, int courseId)
     {
         throw new NotImplementedException();
     }
 
-    public void ChangeCatsSkin(int userId, int skinId)
+    public Task ChangeCatsSkin(int userId, int skinId)
     {
         throw new NotImplementedException();
     }
 
-    public void ChangePassword()
+    public Task ChangePassword(UpdatePasswordModel updatePasswordModel)
     {
         throw new NotImplementedException();
     }
 
-    public void RemoveCourse(int userId, int courseId)
+    public Task RemoveCourse(int userId, int courseId)
     {
         throw new NotImplementedException();
     }

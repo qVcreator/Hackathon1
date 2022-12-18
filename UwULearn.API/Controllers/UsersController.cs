@@ -1,6 +1,9 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UwULearn.Bussines.Interfaces;
 using UwULearn.Data.Enums;
+using UwULearn.Data.Models;
 using UwULearn2.API.Extensions;
 using UwULearn2.API.Infrastructure;
 using UwULearn2.API.Models.Requests;
@@ -11,19 +14,24 @@ namespace UwULearn2.API.Controllers;
 [ApiController]
 [Produces("application/json")]
 [Route("[controller]")]
-public class UserController : Controller
+public class UsersController : Controller
 {
-    public UserController()
+
+    private readonly IMapper _mapper;
+    private readonly IUsersService _usersService;
+    public UsersController(IMapper mapper, IUsersService usersService)
     {
-        //di
+        _mapper = mapper;
+        _usersService = usersService;
     }
 
     [HttpPatch]
     [AuthorizeByRole(Role.Admin, Role.User)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult> UpdatePassword([FromBody] UpdatePasswordRequest updatePassword)
+    public async Task<ActionResult> UpdatePassword([FromBody] UpdatePasswordRequest updatePasswordRequest)
     {
+        await _usersService.ChangePassword(_mapper.Map<UpdatePasswordModel>(updatePasswordRequest));
         return NoContent();
     }
 
@@ -36,6 +44,12 @@ public class UserController : Controller
     public async Task<ActionResult> UpdateCatSkin([FromRoute] int skinId)
     {
         var userId = this.GetUserId();
+
+        if(userId is null)
+            return BadRequest();
+        else
+            await _usersService.ChangeCatsSkin((int)userId, skinId);
+
         return NoContent();
     }
 
@@ -45,8 +59,15 @@ public class UserController : Controller
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task AddCourse([FromRoute] int courseId)
+    public async Task<ActionResult> AddCourse([FromRoute] int courseId)
     {
         var userId = this.GetUserId();
+
+        if (userId is null)
+            return BadRequest();
+        else
+            await _usersService.AddCourse((int)userId, courseId);
+
+        return NoContent();
     }
 }

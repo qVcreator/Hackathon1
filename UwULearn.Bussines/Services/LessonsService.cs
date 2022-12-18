@@ -23,7 +23,7 @@ public class LessonsService : ILessonsService
         throw new NotImplementedException();
     }
 
-    public Task UpdateLesson(Lesson newLesson)
+    public Task UpdateLesson(int id, Lesson newLesson)
     {
         throw new NotImplementedException();
     }

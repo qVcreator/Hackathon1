@@ -1,9 +1,11 @@
-﻿namespace UwULearn.Bussines.Interfaces;
+﻿using UwULearn.Data.Models;
+
+namespace UwULearn.Bussines.Interfaces;
 
 public interface IUsersService
 {
-    public void ChangePassword(); //There is should be update model as param
-    public void ChangeCatsSkin(int userId, int skinId);
-    public void AddCourse(int userId, int courseId);
-    public void RemoveCourse(int userId, int courseId);
+    public Task ChangePassword(UpdatePasswordModel updatePasswordModel); 
+    public Task ChangeCatsSkin(int userId, int skinId);
+    public Task AddCourse(int userId, int courseId);
+    public Task RemoveCourse(int userId, int courseId);
 }

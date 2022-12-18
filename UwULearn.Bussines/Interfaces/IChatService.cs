@@ -4,5 +4,5 @@ namespace UwULearn.Bussines.Interfaces;
 
 public interface IChatService
 {
-    public Task PublishMessage(AllChatMessage message);
+    public Task<int> PublishMessage(AllChatMessage message);
 }
