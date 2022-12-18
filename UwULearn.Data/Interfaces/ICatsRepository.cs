@@ -9,4 +9,5 @@ public interface ICatsRepository
     public Task<int> GetHealth(int catId);
     public Task<int> CreateCat(Cat newCat);
     public Task<Cat> GetCat(int catId);
+    public Task ChangeSkin(Cat cat);
 }

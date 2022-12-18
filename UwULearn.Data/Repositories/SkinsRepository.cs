@@ -30,9 +30,9 @@ public class SkinsRepository : ISkinsRepository
         throw new NotImplementedException();
     }
 
-    public Task<Skin> GetSkin(int id)
+    public async Task<Skin> GetSkin(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Skins.FirstOrDefaultAsync(q => q.Id == id);
     }
 
     public Task UpdateSkin()

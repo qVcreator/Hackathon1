@@ -25,14 +25,14 @@ public class UsersRepository : IUsersRepository
         return user.Id;
     }
 
-    public Task ChangeCatsSkin(User user)
+    public Task ChangePassword()
     {
         throw new NotImplementedException();
     }
 
-    public Task ChangePassword()
+    public async Task<User> GetUserById(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Users.FirstOrDefaultAsync(q => q.Id == id);
     }
 
     public async Task<User> GetUserByUsername(string username)
@@ -43,5 +43,11 @@ public class UsersRepository : IUsersRepository
     public Task RemoveCourse(int userId, int courseId)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task UpdateEnergyAfterBuy(User user)
+    {
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
     }
 }

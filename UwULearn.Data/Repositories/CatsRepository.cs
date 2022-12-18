@@ -11,7 +11,13 @@ public class CatsRepository : ICatsRepository
     public CatsRepository(UwuLearnContext context)
     {
         _context = context;
-    }   
+    }
+
+    public async Task ChangeSkin(Cat cat)
+    {
+        _context.Cats.Update(cat);
+        await _context.SaveChangesAsync();
+    }
 
     public async Task<int> CreateCat(Cat newCat)
     {

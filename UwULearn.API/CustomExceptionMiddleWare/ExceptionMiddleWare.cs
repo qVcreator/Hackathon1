@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using UwULearn.Bussines.Exceptions;
 using UwULearn2.API.Models;
 
 namespace UwULearn2.API.CustomExceptionMiddleWare;
@@ -18,7 +19,15 @@ public class ExceptionMiddleWare
         {
             await _next(httpContext);
         }
-        catch(Exception error)
+        catch(NotFoundException error)
+        {
+            await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, error.Message);
+        }
+        catch (NotEnoughEnergyException error)
+        {
+            await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, error.Message);
+        }
+        catch (Exception error)
         {
             await HandleExceptionAsync(httpContext, HttpStatusCode.InternalServerError, error.Message);
         }

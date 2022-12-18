@@ -29,9 +29,9 @@ public class SkinsService : ISkinsService
         return await _skinsRepository.GetDeafaultSkin();
     }
 
-    public Task<Skin> GetSkin(int id)
+    public async Task<Skin> GetSkin(int id)
     {
-        throw new NotImplementedException();
+        return await _skinsRepository.GetSkin(id);
     }
 
     public Task UpdateSkin()

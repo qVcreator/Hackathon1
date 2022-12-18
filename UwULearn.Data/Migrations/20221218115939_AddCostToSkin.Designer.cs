@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UwULearn.Data;
 
@@ -11,9 +12,11 @@ using UwULearn.Data;
 namespace UwULearn.Data.Migrations
 {
     [DbContext(typeof(UwuLearnContext))]
-    partial class UwuLearnContextModelSnapshot : ModelSnapshot
+    [Migration("20221218115939_AddCostToSkin")]
+    partial class AddCostToSkin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

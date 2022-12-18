@@ -1,6 +1,7 @@
 ﻿using UwULearn.Bussines.Exceptions;
 using UwULearn.Bussines.Interfaces;
 using UwULearn.Data.Entities;
+using UwULearn.Data.Enums;
 using UwULearn.Data.Interfaces;
 
 namespace UwULearn.Bussines.Services;
@@ -9,11 +10,36 @@ public class CatsService : ICatsService
 {
     private readonly ICatsRepository _catsRepository;
     private readonly ISkinsService _skinsService;
+    private readonly IUsersService _usersService;
 
-    public CatsService(ICatsRepository catsRepository, ISkinsService skinsService)
+    public CatsService(ICatsRepository catsRepository, ISkinsService skinsService, IUsersService usersService)
     {
         _catsRepository = catsRepository;
         _skinsService = skinsService;
+        _usersService = usersService;
+    }
+
+    public async Task ChangeSkin(int skinId, int userId)
+    {
+        var skin = await _skinsService.GetSkin(skinId);
+        var user = await _usersService.GetUserById(userId);
+
+        if (skin is null)
+            throw new NotFoundException("Такого скина нет");
+
+        if (skin is null)
+            throw new NotFoundException("Такого пользователя нет");
+
+        if(user.Role != Role.Admin)
+        {
+            if (user.Energy < skin.Cost)
+                throw new NotEnoughEnergyException("Недостаточно Энергии");
+            else
+                user.Energy -= skin.Cost;
+        }
+
+        user.Cat.Skin = skin;
+        await _catsRepository.ChangeSkin(user.Cat);
     }
 
     public async Task<int> CreateCat(Cat cat)

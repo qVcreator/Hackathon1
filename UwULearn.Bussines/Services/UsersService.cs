@@ -71,11 +71,6 @@ public class UsersService : IUsersService
         return userId;
     }
 
-    public Task ChangeCatsSkin(int userId, int skinId)
-    {
-        throw new NotImplementedException();
-    }
-
     public Task ChangePassword(UpdatePasswordModel updatePasswordModel)
     {
         throw new NotImplementedException();
@@ -84,5 +79,10 @@ public class UsersService : IUsersService
     public Task RemoveCourse(int userId, int courseId)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<User> GetUserById(int id)
+    {
+        return await _usersRepository.GetUserById(id);
     }
 }
