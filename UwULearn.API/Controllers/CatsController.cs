@@ -22,7 +22,7 @@ public class CatsController : Controller
         _catsService = catsService;
     }
 
-    [HttpPatch("{catId}")]
+    [HttpPatch("{catId}/name")]
     [AuthorizeByRole(Role.User, Role.Admin)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -35,7 +35,7 @@ public class CatsController : Controller
     }
 
 
-    [HttpPatch("{catId}")]
+    [HttpPatch("{catId}/health")]
     [AuthorizeByRole(Role.Admin)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]

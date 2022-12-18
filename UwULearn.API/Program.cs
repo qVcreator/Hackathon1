@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using UwULearn.Bussines;
 using UwULearn.Bussines.Interfaces;
 using UwULearn.Bussines.Services;
+using UwULearn.Data;
 using UwULearn.Data.Interfaces;
 using UwULearn.Data.Repositories;
 using UwULearn2.API.CustomExceptionMiddleWare;
@@ -72,6 +74,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+
+builder.Services.AddDbContext<UwuLearnContext>(o =>
+{
+    o.UseSqlServer("Server=localhost;Database=UwuLearn;Trusted_Connection=True;encrypt=true;trustServerCertificate=true");
+});
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ICatsService, CatsService>();

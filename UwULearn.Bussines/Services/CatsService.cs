@@ -7,11 +7,6 @@ public class CatsService : ICatsService
 {
     private readonly ICatsRepository _catsRepository;
 
-    public CatsService(ICatsRepository catsRepository)
-    {
-        _catsRepository = catsRepository;
-    }
-
     public Task<int> GetHealth(int catId)
     {
         throw new NotImplementedException();
@@ -22,7 +17,7 @@ public class CatsService : ICatsService
         throw new NotImplementedException();
     }
 
-    public Task<string> Rename(int catId, string newName)
+    public Task Rename(int catId, string newName)
     {
         throw new NotImplementedException();
     }
