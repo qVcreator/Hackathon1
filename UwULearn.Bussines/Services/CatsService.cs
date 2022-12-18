@@ -8,14 +8,17 @@ namespace UwULearn.Bussines.Services;
 public class CatsService : ICatsService
 {
     private readonly ICatsRepository _catsRepository;
+    private readonly ISkinsService _skinsService;
 
-    public CatsService(ICatsRepository catsRepository)
+    public CatsService(ICatsRepository catsRepository, ISkinsService skinsService)
     {
         _catsRepository = catsRepository;
+        _skinsService = skinsService;
     }
 
     public async Task<int> CreateCat(Cat cat)
     {
+        cat.Skin = await _skinsService.GetDeafaultSkin();
         return await _catsRepository.CreateCat(cat);
     }
 

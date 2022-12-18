@@ -21,5 +21,6 @@ public class MapperConfig : Profile
         CreateMap<Skin, SkinResponse>();
         CreateMap<AddSkinRequest, Skin>();
         CreateMap<AddAdminRequest, AddAdminModel>();
+        CreateMap<AddCatRequest, Cat>();
     }
 }

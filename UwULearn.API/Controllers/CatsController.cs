@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UwULearn.Bussines.Interfaces;
+using UwULearn.Data.Entities;
 using UwULearn.Data.Enums;
+using UwULearn2.API.Extensions;
 using UwULearn2.API.Infrastructure;
+using UwULearn2.API.Models.Requests;
 
 namespace UwULearn2.API.Controllers;
 
@@ -55,5 +58,16 @@ public class CatsController : Controller
     {
         var result = await _catsService.GetHealth(catId);
         return Ok(result);
+    }
+
+    [HttpPost]
+    [AuthorizeByRole(Role.Admin)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<ActionResult<int>> CreateCat(AddCatRequest newCat)
+    {
+        var result = await _catsService.CreateCat(_mapper.Map<Cat>(newCat));
+        return Created(this.GetUri(), result);
     }
 }
