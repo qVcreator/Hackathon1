@@ -1,4 +1,5 @@
-﻿using UwULearn.Bussines.Interfaces;
+﻿using UwULearn.Bussines.Exceptions;
+using UwULearn.Bussines.Interfaces;
 using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
@@ -23,18 +24,35 @@ public class CatsService : ICatsService
         return await _catsRepository.GetCat(catId);
     }
 
-    public Task<int> GetHealth(int catId)
+    public async Task<int> GetHealth(int catId)
     {
-        throw new NotImplementedException();
+        var cat = await _catsRepository.GetCat(catId);
+
+        if (cat is null)
+            throw new NotFoundException("Такого котика не существует");
+
+        return cat.Health;
     }
 
-    public Task HealthUpdate(int catId, int newHealth)
+    public async Task HealthUpdate(int catId, int newHealth)
     {
-        throw new NotImplementedException();
+        var cat = await _catsRepository.GetCat(catId);
+
+        if (cat is null)
+            throw new NotFoundException("Такого котика не существует");
+
+        cat.Health = newHealth;
+        await _catsRepository.HealthUpdate(cat);
     }
 
-    public Task Rename(int catId, string newName)
+    public async Task Rename(int catId, string newName)
     {
-        throw new NotImplementedException();
+        var cat = await _catsRepository.GetCat(catId);
+
+        if (cat is null)
+            throw new NotFoundException("Такого котика не существует");
+
+        cat.Name = newName;
+        await _catsRepository.HealthUpdate(cat);
     }
 }
