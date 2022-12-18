@@ -36,6 +36,18 @@ public class LessonsController : Controller
         return Created(this.GetUri(), result);
     }
 
+    [HttpPost("{id}/task-answer")]
+    [AuthorizeByRole(Role.User)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<ActionResult> CheckAnswerWithCallbackEnergy([FromRoute] int id, [FromBody] string answer)
+    {
+        var userId = this.GetUserId();
+        var result = await _lessonsService.CheckAnswer(id, (int)userId!, answer);
+        return Ok(result);
+    }
+
     [HttpPut("{id}")]
     [AuthorizeByRole(Role.Admin)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -44,16 +56,6 @@ public class LessonsController : Controller
     public async Task<ActionResult> UpdateLesson([FromRoute] int id, [FromBody] UpdateLessonRequest updateLessonRequest)
     {
         await _lessonsService.UpdateLesson(id, _mapper.Map<Lesson>(updateLessonRequest));
-        return NoContent();
-    }
-
-    [HttpDelete("{id}")]
-    [AuthorizeByRole(Role.Admin)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult> DeleteLesson([FromRoute] int id)
-    {
-        await _lessonsService.DeleteLesson(id);
         return NoContent();
     }
 
@@ -67,15 +69,13 @@ public class LessonsController : Controller
         return NoContent();
     }
 
-    [HttpPost("{id}/task-answer")]
-    [AuthorizeByRole(Role.User)]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [HttpDelete("{id}")]
+    [AuthorizeByRole(Role.Admin)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    public async Task<ActionResult> CheckAnswerWithCallbackEnergy([FromRoute] int id, [FromBody] string answer)
+    public async Task<ActionResult> DeleteLesson([FromRoute] int id)
     {
-        var userId = this.GetUserId();
-        var result = await _lessonsService.CheckAnswer(id, (int)userId!, answer);
-        return Ok(result);
+        await _lessonsService.DeleteLesson(id);
+        return NoContent();
     }
 }

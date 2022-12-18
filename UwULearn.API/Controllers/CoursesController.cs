@@ -26,39 +26,6 @@ public class CoursesController : Controller
         _coursesService = coursesService;
     }
 
-    [HttpPatch("{courseId}/lesson/{lessonId}")]
-    [AuthorizeByRole(Role.Admin)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> AddLesson([FromRoute] int courseId, [FromBody] AddLessonRequest lesson)
-    {
-        await _coursesService.AddLesson(courseId, _mapper.Map<Lesson>(lesson));
-        return NoContent();
-    }
-
-    [HttpDelete("{courseId}/lesson/{lessonId}")]
-    [AuthorizeByRole(Role.Admin)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> DeleteLesson([FromRoute]int lessonId, [FromRoute] int courseId)
-    {
-        await _coursesService.DeleteLesson(courseId, lessonId);
-        return NoContent();
-    }
-
-    [HttpPut("{courseId}")]
-    [AuthorizeByRole(Role.Admin)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> Update([FromRoute] int courseId, [FromBody] UpdateCourseRequest updateCourse)
-    {
-        await _coursesService.Update(courseId, _mapper.Map<Course>(updateCourse));
-        return NoContent();
-    }
-
     [HttpPost]
     [AuthorizeByRole(Role.Admin)]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -89,5 +56,38 @@ public class CoursesController : Controller
     {
         var result = await _coursesService.GetAll();
         return Ok(_mapper.Map<List<GetAllCoursesResponse>>(result));
+    }
+
+    [HttpPut("{courseId}")]
+    [AuthorizeByRole(Role.Admin)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> Update([FromRoute] int courseId, [FromBody] UpdateCourseRequest updateCourse)
+    {
+        await _coursesService.Update(courseId, _mapper.Map<Course>(updateCourse));
+        return NoContent();
+    }
+
+    [HttpPatch("{courseId}/lesson/{lessonId}")]
+    [AuthorizeByRole(Role.Admin)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> AddLesson([FromRoute] int courseId, [FromBody] AddLessonRequest lesson)
+    {
+        await _coursesService.AddLesson(courseId, _mapper.Map<Lesson>(lesson));
+        return NoContent();
+    }
+
+    [HttpDelete("{courseId}/lesson/{lessonId}")]
+    [AuthorizeByRole(Role.Admin)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult> DeleteLesson([FromRoute]int lessonId, [FromRoute] int courseId)
+    {
+        await _coursesService.DeleteLesson(courseId, lessonId);
+        return NoContent();
     }
 }

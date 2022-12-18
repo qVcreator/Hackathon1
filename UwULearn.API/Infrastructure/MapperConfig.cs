@@ -22,5 +22,11 @@ public class MapperConfig : Profile
         CreateMap<AddSkinRequest, Skin>();
         CreateMap<AddAdminRequest, AddAdminModel>();
         CreateMap<AddCatRequest, Cat>();
+        CreateMap<Cat, CatResponse>();
+        CreateMap<User, UsersResponse>();
+        CreateMap<TaskEntity, TaskResponse>();
+        CreateMap<Lesson, LessonResponse>();
+        CreateMap<Course, CourseResponse>();
+        CreateMap<CourseProgress, CourseProgressResponse>();
     }
 }

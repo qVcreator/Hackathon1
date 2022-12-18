@@ -26,18 +26,6 @@ public class SkinsController : Controller
         _skinsService = skinsService;
     }
 
-    [HttpGet("{id}")]
-    [AuthorizeByRole(Role.User, Role.Admin)]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    public async Task<ActionResult<SkinResponse>> GetSkin([FromRoute] int id)
-    {
-        var result = await _skinsService.GetSkin(id);
-        return Ok(_mapper.Map<SkinResponse>(result));
-    }
-
     [HttpPost]
     [AuthorizeByRole(Role.Admin)]
     [AllowAnonymous]
@@ -49,5 +37,17 @@ public class SkinsController : Controller
     {
         var result = await _skinsService.AddSkin(_mapper.Map<Skin>(newSkin));
         return Created(this.GetUri(), result);
+    }
+
+    [HttpGet("{id}")]
+    [AuthorizeByRole(Role.User, Role.Admin)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<ActionResult<SkinResponse>> GetSkin([FromRoute] int id)
+    {
+        var result = await _skinsService.GetSkin(id);
+        return Ok(_mapper.Map<SkinResponse>(result));
     }
 }
