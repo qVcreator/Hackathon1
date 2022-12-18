@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UwULearn.Bussines.Interfaces;
+using UwULearn.Bussines.Models;
 using UwULearn.Data.Enums;
 using UwULearn.Data.Models;
 using UwULearn2.API.Extensions;
@@ -23,6 +24,16 @@ public class UsersController : Controller
     {
         _mapper = mapper;
         _usersService = usersService;
+    }
+
+    [HttpPost("admin")]
+    [AllowAnonymous]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    public async Task<ActionResult<int>> AddAdmin([FromBody] AddAdminRequest newUser)
+    {
+        var result = await _usersService.AddAdmin(_mapper.Map<AddAdminModel>(newUser));
+        return Created(this.GetUri(), result);
     }
 
     [HttpPatch]

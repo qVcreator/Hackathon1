@@ -11,6 +11,7 @@ public class UwuLearnContext : DbContext
     public DbSet<Lesson> Lessons { get; set; }
     public DbSet<Skin> Skins { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<Organization> Organizations { get; set; }
 
     public UwuLearnContext(DbContextOptions<UwuLearnContext> options) 
         : base(options)
@@ -67,7 +68,17 @@ public class UwuLearnContext : DbContext
             entity.HasKey(u => u.Id);
 
             entity.HasOne(u => u.Cat);
+            entity.HasMany(u => u.FriendList);
             entity.HasMany(u => u.Courses);            
+        });
+
+        modelBuilder.Entity<Organization>(entity =>
+        {
+            entity.ToTable(nameof(Organization));
+
+            entity.HasKey(o => o.Id);
+
+            entity.HasOne(o => o.User);
         });
     }
 }

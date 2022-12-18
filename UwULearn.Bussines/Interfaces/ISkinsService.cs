@@ -8,4 +8,5 @@ public interface ISkinsService
     public Task<int> AddSkin(Skin newSkin);
     public Task DeleteSkin(int id);
     public Task UpdateSkin();
+    public Task<Skin> GetDeafaultSkin();
 }

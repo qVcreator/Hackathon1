@@ -39,7 +39,8 @@ public class SkinsController : Controller
     }
 
     [HttpPost]
-    [AuthorizeByRole(Role.Admin)]
+    //[AuthorizeByRole(Role.Admin)]
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]

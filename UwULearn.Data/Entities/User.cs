@@ -11,7 +11,7 @@ public class User
     public DateTime UpdateDate { get; set; }
     public Cat Cat { get; set; }
     public List<Course> Courses { get; set; }
-    public List<int> FriendList { get; set; }
+    public List<User> FriendList { get; set; }
     public int Energy { get; set; }
     public Role Role { get; set; }
 }

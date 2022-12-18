@@ -1,4 +1,5 @@
-﻿using UwULearn.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
 namespace UwULearn.Data.Repositories;
@@ -12,9 +13,16 @@ public class SkinsRepository : ISkinsRepository
         _context = context;
     }
 
-    public Task<int> AddSkin(Skin newSkin)
+    public async Task<Skin> GetDeafaultSkin()
     {
-        throw new NotImplementedException();
+        var deafaultSkinId = 1;
+        return await _context.Skins.FirstOrDefaultAsync(q => q.Id == deafaultSkinId);
+    }
+    public async Task<int> AddSkin(Skin newSkin)
+    {
+        await _context.Skins.AddAsync(newSkin);
+        await _context.SaveChangesAsync();
+        return newSkin.Id;
     }
 
     public Task DeleteSkin(int id)

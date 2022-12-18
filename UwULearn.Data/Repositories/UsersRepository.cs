@@ -1,4 +1,5 @@
-﻿using UwULearn.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
 namespace UwULearn.Data.Repositories;
@@ -19,7 +20,6 @@ public class UsersRepository : IUsersRepository
 
     public async Task<int> Adduser(User user)
     {
-        user.RegistrationDate = DateTime.Now;
         await _context.Users.AddAsync(user);
         await _context.SaveChangesAsync();
         return user.Id;
@@ -35,9 +35,9 @@ public class UsersRepository : IUsersRepository
         throw new NotImplementedException();
     }
 
-    public Task<User> GetUserByUsername(string username)
+    public async Task<User> GetUserByUsername(string username)
     {
-        throw new NotImplementedException();
+        return await _context.Users.FirstOrDefaultAsync(q => q.Username == username);
     }
 
     public Task RemoveCourse(int userId, int courseId)

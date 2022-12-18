@@ -1,4 +1,5 @@
-﻿using UwULearn.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
 namespace UwULearn.Data.Repositories;
@@ -12,9 +13,16 @@ public class CatsRepository : ICatsRepository
         _context = context;
     }   
 
-    public Task<int> CreateCat(Cat newCat)
+    public async Task<int> CreateCat(Cat newCat)
     {
-        throw new NotImplementedException();
+        await _context.Cats.AddAsync(newCat);
+        await _context.SaveChangesAsync();
+        return newCat.Id;
+    }
+
+    public async Task<Cat> GetCat(int catId)
+    {
+        return await _context.Cats.FirstOrDefaultAsync(q => q.Id == catId);
     }
 
     public Task<int> GetHealth(int catId)

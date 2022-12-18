@@ -13,14 +13,20 @@ public class SkinsService : ISkinsService
         _skinsRepository = skinsRepository;
     }
 
-    public Task<int> AddSkin(Skin newSkin)
+    public async Task<int> AddSkin(Skin newSkin)
     {
-        throw new NotImplementedException();
+        return await _skinsRepository.AddSkin(newSkin);
+
     }
 
     public Task DeleteSkin(int id)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<Skin> GetDeafaultSkin()
+    {
+        return await _skinsRepository.GetDeafaultSkin();
     }
 
     public Task<Skin> GetSkin(int id)

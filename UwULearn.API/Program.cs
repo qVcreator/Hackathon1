@@ -87,6 +87,7 @@ builder.Services.AddScoped<ICoursesService, CoursesService>();
 builder.Services.AddScoped<ILessonsService, LessonsService>();
 builder.Services.AddScoped<ISkinsService, SkinsService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IOrganizationService, OrganizationService>();
 
 builder.Services.AddScoped<ICatsRepository, CatsRepository>();
 builder.Services.AddScoped<IChatRepository, ChatRepository>();
@@ -94,6 +95,7 @@ builder.Services.AddScoped<ICoursesRepository, CoursesRepository>();
 builder.Services.AddScoped<ILessonsRepository, LessonsRepository>();
 builder.Services.AddScoped<ISkinsRepository, SkinsRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IOrganizatoinRepository, OrganizationRepository>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
@@ -110,6 +112,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

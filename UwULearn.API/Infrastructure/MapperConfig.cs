@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using UwULearn.Bussines.Models;
 using UwULearn.Data.Entities;
 using UwULearn.Data.Models;
 using UwULearn2.API.Models.Requests;
@@ -19,5 +20,6 @@ public class MapperConfig : Profile
         CreateMap<UpdateLessonRequest, Lesson>();
         CreateMap<Skin, SkinResponse>();
         CreateMap<AddSkinRequest, Skin>();
+        CreateMap<AddAdminRequest, AddAdminModel>();
     }
 }

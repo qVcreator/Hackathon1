@@ -1,13 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "4Mtx3D8H0TuWl2KqfaGnP3lnWk02jxkq8bTLSDMJ2VWuYfXBhIpeDwEMezr2WOWajRg2o5X0GQSBbrufpHtqAg==",
+  "dgSpecHash": "crH6kyIlzLDhOQ0XBig/BCXTzZRMzZtyxtnbfzLqadHJVLecxzke/mMYCVkOa9CBLrWE5lLABXAJxqSsX/JWbQ==",
   "success": true,
   "projectFilePath": "C:\\Pet\\Hackathon1\\UwULearn.Bussines\\UwULearn.Bussines.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\govnoZhopa\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "C:\\Users\\govnoZhopa\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.1\\microsoft.entityframeworkcore.7.0.1.nupkg.sha512",
