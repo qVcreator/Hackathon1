@@ -22,21 +22,28 @@ public class CatsRepository : ICatsRepository
 
     public async Task<Cat> GetCat(int catId)
     {
-        return await _context.Cats.FirstOrDefaultAsync(q => q.Id == catId);
+        return (await _context.Cats.FirstOrDefaultAsync(q => q.Id == catId))!;
     }
 
-    public Task<int> GetHealth(int catId)
+    public async Task<int> GetHealth(int catId)
     {
-        throw new NotImplementedException();
+        var cat = await _context.Cats.FirstOrDefaultAsync(q => q.Id == catId);
+        return cat!.Health;
     }
 
-    public Task HealthUpdate(int catId, int newHealth)
+    public async Task HealthUpdate(int catId, int newHealth)
     {
-        throw new NotImplementedException();
+        var cat = await _context.Cats.FirstOrDefaultAsync(q => q.Id == catId);
+        cat!.Health = newHealth;
+        _context.Cats.Update(cat);
+        await _context.SaveChangesAsync();
     }
 
-    public Task<string> Rename(int catId, string newName)
+    public async Task Rename(int catId, string newName)
     {
-        throw new NotImplementedException();
+        var cat = await _context.Cats.FirstOrDefaultAsync(q => q.Id == catId);
+        cat!.Name = newName;
+        _context.Cats.Update(cat);
+        await _context.SaveChangesAsync();
     }
 }
