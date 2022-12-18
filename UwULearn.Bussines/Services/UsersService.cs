@@ -1,4 +1,5 @@
 ﻿using UwULearn.Bussines.Interfaces;
+using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 using UwULearn.Data.Models;
 
@@ -14,6 +15,11 @@ public class UsersService : IUsersService
     }
 
     public Task AddCourse(int userId, int courseId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<int> AddUser(User user)
     {
         throw new NotImplementedException();
     }

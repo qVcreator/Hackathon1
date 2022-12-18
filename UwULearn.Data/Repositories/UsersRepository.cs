@@ -1,4 +1,5 @@
-﻿using UwULearn.Data.Interfaces;
+﻿using UwULearn.Data.Entities;
+using UwULearn.Data.Interfaces;
 
 namespace UwULearn.Data.Repositories;
 
@@ -11,22 +12,35 @@ public class UsersRepository : IUsersRepository
         _context = context;
     }
 
-    public void AddCourse(int userId, int courseId)
+    public Task AddCourse(int userId, int courseId)
     {
         throw new NotImplementedException();
     }
 
-    public void ChangeCatsSkin(int userId, int skinId)
+    public async Task<int> Adduser(User user)
+    {
+        user.RegistrationDate = DateTime.Now;
+        await _context.Users.AddAsync(user);
+        await _context.SaveChangesAsync();
+        return user.Id;
+    }
+
+    public Task ChangeCatsSkin(User user)
     {
         throw new NotImplementedException();
     }
 
-    public void ChangePassword()
+    public Task ChangePassword()
     {
         throw new NotImplementedException();
     }
 
-    public void RemoveCourse(int userId, int courseId)
+    public Task<User> GetUserByUsername(string username)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task RemoveCourse(int userId, int courseId)
     {
         throw new NotImplementedException();
     }

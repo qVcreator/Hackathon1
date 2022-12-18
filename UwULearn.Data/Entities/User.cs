@@ -7,6 +7,8 @@ public class User
     public int Id { get; set; }
     public string Username { get; set; }
     public string Password { get; set; }
+    public DateTime RegistrationDate { get; set; }
+    public DateTime UpdateDate { get; set; }
     public Cat Cat { get; set; }
     public List<Course> Courses { get; set; }
     public List<int> FriendList { get; set; }
