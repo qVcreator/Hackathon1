@@ -1,4 +1,5 @@
-﻿using UwULearn.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
 namespace UwULearn.Data.Repositories;
@@ -12,33 +13,38 @@ public class CoursesRepository : ICoursesRepository
         _context = context;
     }
 
-    public Task Add(Course newCourse)
+    public async Task<int> Add(Course newCourse)
     {
-        throw new NotImplementedException();
+        await _context.Courses.AddAsync(newCourse);
+        await _context.SaveChangesAsync();
+        return newCourse.Id;
     }
 
-    public Task AddLesson(Lesson newLesson)
+    public async Task AddLesson(Course course)
     {
-        throw new NotImplementedException();
+        _context.Courses.Update(course);
+        await _context.SaveChangesAsync();
     }
 
-    public Task DeleteLesson(int lessonId)
+    public async Task DeleteLesson(Course course)
     {
-        throw new NotImplementedException();
+        _context.Courses.Update(course);
+        await _context.SaveChangesAsync();
     }
 
-    public Task<Course> Get(int courseId)
+    public async Task<Course> Get(int courseId)
     {
-        throw new NotImplementedException();
+        return await _context.Courses.FirstOrDefaultAsync(q => q.Id == courseId);
     }
 
-    public Task<List<Course>> GetAll()
+    public async Task<List<Course>> GetAll()
     {
-        throw new NotImplementedException();
+        return await _context.Courses.ToListAsync();
     }
 
-    public Task Update(Course updatedCourse)
+    public async Task Update(Course updatedCourse)
     {
-        throw new NotImplementedException();
+        _context.Courses.Update(updatedCourse);
+        await _context.SaveChangesAsync();
     }
 }

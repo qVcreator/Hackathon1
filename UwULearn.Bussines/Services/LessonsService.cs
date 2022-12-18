@@ -1,4 +1,5 @@
-﻿using UwULearn.Bussines.Interfaces;
+﻿using UwULearn.Bussines.Exceptions;
+using UwULearn.Bussines.Interfaces;
 using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
@@ -13,9 +14,9 @@ public class LessonsService : ILessonsService
         _lessonsRepository = lessonsRepository;
     }
 
-    public Task<int> CreateLesson(Lesson newLesson)
+    public async Task<int> CreateLesson(Lesson newLesson)
     {
-        throw new NotImplementedException();
+        return await _lessonsRepository.CreateLesson(newLesson);
     }
 
     public Task DeleteLesson(int lessonId)
@@ -23,8 +24,23 @@ public class LessonsService : ILessonsService
         throw new NotImplementedException();
     }
 
-    public Task UpdateLesson(int id, Lesson newLesson)
+    public async Task<List<Lesson>> GetLessons()
     {
-        throw new NotImplementedException();
+        return await _lessonsRepository.GetLessons();
+    }
+
+    public async Task UpdateLesson(int id, Lesson newLesson)
+    {
+        var lesson = await _lessonsRepository.GetLessonById(id);
+
+        if (lesson == default)
+            throw new NotFoundException("такого урока нет");
+
+        lesson.Text = newLesson.Text;
+        lesson.Description = newLesson.Description;
+        lesson.Name = newLesson.Name;
+        lesson.Video = newLesson.Video;
+
+        await _lessonsRepository.UpdateLesson(lesson);
     }
 }

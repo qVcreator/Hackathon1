@@ -1,4 +1,5 @@
-﻿using UwULearn.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
 namespace UwULearn.Data.Repositories;
@@ -12,9 +13,11 @@ public class LessonsRepository : ILessonsRepository
         _context = context;
     }
 
-    public Task<int> CreateLesson(Lesson newLesson)
+    public async Task<int> CreateLesson(Lesson newLesson)
     {
-        throw new NotImplementedException();
+        await _context.Lessons.AddAsync(newLesson);
+        await _context.SaveChangesAsync();
+        return newLesson.Id;
     }
 
     public Task DeleteLesson(int lessonId)
@@ -22,8 +25,19 @@ public class LessonsRepository : ILessonsRepository
         throw new NotImplementedException();
     }
 
-    public Task UpdateLesson(Lesson newLesson)
+    public async Task<Lesson> GetLessonById(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Lessons.FirstOrDefaultAsync(q => q.Id == id);
+    }
+
+    public async Task<List<Lesson>> GetLessons()
+    {
+        return await _context.Lessons.ToListAsync();
+    }
+
+    public async Task UpdateLesson(Lesson newLesson)
+    {
+        _context.Update(newLesson);
+        await _context.SaveChangesAsync();
     }
 }

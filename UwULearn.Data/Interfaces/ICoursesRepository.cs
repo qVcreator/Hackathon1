@@ -4,10 +4,10 @@ namespace UwULearn.Data.Interfaces;
 
 public interface ICoursesRepository
 {
-    public Task AddLesson(Lesson newLesson);
-    public Task DeleteLesson(int lessonId);
+    public Task AddLesson(Course course);
+    public Task DeleteLesson(Course course);
     public Task Update(Course updatedCourse);
-    public Task Add(Course newCourse);
+    public Task<int> Add(Course newCourse);
     public Task<Course> Get(int courseId);
     public Task<List<Course>> GetAll();
 }

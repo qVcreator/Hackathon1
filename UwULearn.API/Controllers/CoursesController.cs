@@ -31,9 +31,9 @@ public class CoursesController : Controller
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> AddLesson([FromRoute] int courseId, [FromRoute] int lessonId)
+    public async Task<ActionResult> AddLesson([FromRoute] int courseId, [FromBody] AddLessonRequest lesson)
     {
-        await _coursesService.AddLesson(courseId, lessonId);
+        await _coursesService.AddLesson(courseId, _mapper.Map<Lesson>(lesson));
         return NoContent();
     }
 

@@ -1,4 +1,5 @@
-﻿using UwULearn.Bussines.Interfaces;
+﻿using UwULearn.Bussines.Exceptions;
+using UwULearn.Bussines.Interfaces;
 using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
@@ -13,33 +14,54 @@ public class CoursesService : ICoursesService
         _coursesRepository = coursesRepository;
     }
 
-    public Task<int> Add(Course newCourse)
+    public async Task<int> Add(Course newCourse)
     {
-        throw new NotImplementedException();
+        return await _coursesRepository.Add(newCourse);
+
     }
 
-    public Task AddLesson(int courseId, int lessonId)
+    public async Task AddLesson(int courseId, Lesson lesson)
     {
-        throw new NotImplementedException();
+        var course = await _coursesRepository.Get(courseId);
+
+        course.Lessons.Add(lesson);
+
+        await _coursesRepository.AddLesson(course);
     }
 
-    public Task DeleteLesson(int courseId, int lessonId)
+    public async Task DeleteLesson(int courseId, int lessonId)
     {
-        throw new NotImplementedException();
+        var course = await _coursesRepository.Get(courseId);
+
+        if (course == default)
+            throw new NotFoundException("такого курса нет");
+
+        course.Lessons.RemoveAt(course.Lessons.FindIndex(q => q.Id == lessonId));
+
+        await _coursesRepository.DeleteLesson(course);
     }
 
-    public Task<Course> Get(int courseId)
+    public async Task<Course> Get(int courseId)
     {
-        throw new NotImplementedException();
+        return await _coursesRepository.Get(courseId);
     }
 
-    public Task<List<Course>> GetAll()
+    public async Task<List<Course>> GetAll()
     {
-        throw new NotImplementedException();
+        return await _coursesRepository.GetAll();
     }
 
-    public Task Update(int id, Course updatedCourse)
+    public async Task Update(int id, Course updatedCourse)
     {
-        throw new NotImplementedException();
+        var course = await _coursesRepository.Get(id);
+
+        if (course == default)
+            throw new NotFoundException("такого курса нет");
+
+        course.Description = updatedCourse.Description;
+        course.Lessons = updatedCourse.Lessons;
+        course.Name = updatedCourse.Name;
+
+        await _coursesRepository.Update(course);
     }
 }

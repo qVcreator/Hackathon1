@@ -80,5 +80,10 @@ public class UwuLearnContext : DbContext
 
             entity.HasOne(o => o.User);
         });
+
+        modelBuilder.Entity<TaskEntity>(entity =>
+        {
+            entity.ToTable(nameof(TaskEntity));
+        });
     }
 }
