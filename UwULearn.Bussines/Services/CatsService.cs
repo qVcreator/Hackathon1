@@ -10,36 +10,16 @@ public class CatsService : ICatsService
 {
     private readonly ICatsRepository _catsRepository;
     private readonly ISkinsService _skinsService;
-    private readonly IUsersService _usersService;
 
-    public CatsService(ICatsRepository catsRepository, ISkinsService skinsService, IUsersService usersService)
+    public CatsService(ICatsRepository catsRepository, ISkinsService skinsService)
     {
         _catsRepository = catsRepository;
         _skinsService = skinsService;
-        _usersService = usersService;
     }
 
-    public async Task ChangeSkin(int skinId, int userId)
+    public async Task ChangeSkin(Cat cat)
     {
-        var skin = await _skinsService.GetSkin(skinId);
-        var user = await _usersService.GetUserById(userId);
-
-        if (skin is null)
-            throw new NotFoundException("Такого скина нет");
-
-        if (skin is null)
-            throw new NotFoundException("Такого пользователя нет");
-
-        if(user.Role != Role.Admin)
-        {
-            if (user.Energy < skin.Cost)
-                throw new NotEnoughEnergyException("Недостаточно Энергии");
-            else
-                user.Energy -= skin.Cost;
-        }
-
-        user.Cat.Skin = skin;
-        await _catsRepository.ChangeSkin(user.Cat);
+        await _catsRepository.ChangeSkin(cat);
     }
 
     public async Task<int> CreateCat(Cat cat)

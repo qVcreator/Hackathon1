@@ -9,5 +9,5 @@ public interface ICatsService
     public Task HealthUpdate(int catId, int newHealth);
     public Task<int> GetHealth(int catId);
     public Task<Cat> GetCat(int catId);
-    public Task ChangeSkin(int skinId, int userId);
+    public Task ChangeSkin(Cat cat);
 }

@@ -12,4 +12,5 @@ public interface IUsersService
     public Task AddCourse(int userId, int courseId);
     public Task RemoveCourse(int userId, int courseId);
     public Task<User> GetUserById(int id);
+    public Task ChangeCatSkin(int skinId, int userId);
 }

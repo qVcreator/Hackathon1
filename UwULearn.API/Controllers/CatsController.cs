@@ -70,15 +70,4 @@ public class CatsController : Controller
         var result = await _catsService.CreateCat(_mapper.Map<Cat>(newCat));
         return Created(this.GetUri(), result);
     }
-
-    [HttpPut("{userId}/skin/{skinId}")]
-    [AuthorizeByRole(Role.Admin, Role.User)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<int>> CreateCat([FromRoute] int userId, [FromRoute] int skinId)
-    {
-        await _catsService.ChangeSkin(skinId, userId);
-        return NoContent();
-    }
 }

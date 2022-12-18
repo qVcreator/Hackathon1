@@ -46,24 +46,6 @@ public class UsersController : Controller
         return NoContent();
     }
 
-    [HttpPatch("cat-skin/{skinId}")]
-    [AuthorizeByRole(Role.Admin, Role.User)]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult> UpdateCatSkin([FromRoute] int skinId)
-    {
-        var userId = this.GetUserId();
-
-        if(userId is null)
-            return BadRequest();
-        else
-            await _usersService.ChangeCatsSkin((int)userId, skinId);
-
-        return NoContent();
-    }
-
     
     [HttpPatch("course/{courseId}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -79,6 +61,18 @@ public class UsersController : Controller
         else
             await _usersService.AddCourse((int)userId, courseId);
 
+        return NoContent();
+    }
+
+    [HttpPut("{userId}/skin/{skinId}")]
+    [AuthorizeByRole(Role.Admin, Role.User)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<int>> UpdateCatSkin([FromRoute] int userId, [FromRoute] int skinId)
+    {
+        await _usersService.ChangeCatSkin(skinId, userId);
         return NoContent();
     }
 }

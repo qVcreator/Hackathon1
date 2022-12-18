@@ -28,6 +28,29 @@ public class UsersService : IUsersService
         _skinsService = skinsService;
     }
 
+    public async Task ChangeCatSkin(int skinId, int userId)
+    {
+        var skin = await _skinsService.GetSkin(skinId);
+        var user = await _usersRepository.GetUserById(userId);
+
+        if (skin is null)
+            throw new NotFoundException("Такого скина нет");
+
+        if (skin is null)
+            throw new NotFoundException("Такого пользователя нет");
+
+        if (user.Role != Role.Admin)
+        {
+            if (user.Energy < skin.Cost)
+                throw new NotEnoughEnergyException("Недостаточно Энергии");
+            else
+                user.Energy -= skin.Cost;
+        }
+
+        user.Cat.Skin = skin;
+        await _catsService.ChangeSkin(user.Cat);
+    }
+
     public async Task AddCourse(int userId, int courseId)
     {
         var user = await _usersRepository.GetUserById(userId);
@@ -38,6 +61,8 @@ public class UsersService : IUsersService
 
         if(!(user.Courses.Contains(course)))
             user.Courses.Add(course);
+
+        await _usersRepository.AddCourse(user);
     }
 
     public async Task<int> AddUser(AddUserModel user)

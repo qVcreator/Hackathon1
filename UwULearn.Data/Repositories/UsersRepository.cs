@@ -13,9 +13,10 @@ public class UsersRepository : IUsersRepository
         _context = context;
     }
 
-    public Task AddCourse(int userId, int courseId)
+    public async Task AddCourse(User user)
     {
-        throw new NotImplementedException();
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<int> Adduser(User user)
@@ -40,9 +41,14 @@ public class UsersRepository : IUsersRepository
         return await _context.Users.FirstOrDefaultAsync(q => q.Username == username);
     }
 
-    public Task<bool> IsUserExist(string username)
+    public async Task<bool> IsUserExist(string username)
     {
-        throw new NotImplementedException();
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
+
+        if (user == default)
+            return false;
+        else
+            return true;
     }
 
     public Task RemoveCourse(int userId, int courseId)
