@@ -25,6 +25,12 @@ public class LessonsRepository : ILessonsRepository
         throw new NotImplementedException();
     }
 
+    public async Task EditTask(Lesson lesson)
+    {
+        _context.Update(lesson);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<Lesson> GetLessonById(int id)
     {
         return await _context.Lessons.FirstOrDefaultAsync(q => q.Id == id);

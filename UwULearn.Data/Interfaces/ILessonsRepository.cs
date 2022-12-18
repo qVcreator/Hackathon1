@@ -9,4 +9,6 @@ public interface ILessonsRepository
     public Task DeleteLesson(int lessonId);
     public Task<List<Lesson>> GetLessons();
     public Task<Lesson> GetLessonById(int id);
+    public Task EditTask(Lesson lesson);
+    
 }

@@ -1,8 +1,7 @@
-﻿namespace UwULearn.Data.Entities;
+﻿namespace UwULearn2.API.Models.Requests;
 
-public class TaskEntity
+public class EditTaskRequest
 {
-    public int Id { get; set; }
     public string Descriotion { get; set; }
     public string Example { get; set; }
     public string CorrectAnswer { get; set; }

@@ -51,10 +51,31 @@ public class LessonsController : Controller
     [AuthorizeByRole(Role.Admin)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     public async Task<ActionResult> DeleteLesson([FromRoute] int id)
     {
         await _lessonsService.DeleteLesson(id);
         return NoContent();
+    }
+
+    [HttpPut("{id}/task")]
+    [AuthorizeByRole(Role.Admin)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult> EditTask([FromRoute] int id, [FromBody] EditTaskRequest editedTask)
+    {
+        await _lessonsService.EditTask(id, _mapper.Map<TaskEntity>(editedTask));
+        return NoContent();
+    }
+
+    [HttpPost("{id}/task-answer")]
+    [AuthorizeByRole(Role.User)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    public async Task<ActionResult> CheckAnswerWithCallbackEnergy([FromRoute] int id, [FromBody] string answer)
+    {
+        var userId = this.GetUserId();
+        var result = await _lessonsService.CheckAnswer(id, (int)userId!, answer);
+        return Ok(result);
     }
 }

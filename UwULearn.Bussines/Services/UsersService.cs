@@ -44,7 +44,10 @@ public class UsersService : IUsersService
             if (user.Energy < skin.Cost)
                 throw new NotEnoughEnergyException("Недостаточно Энергии");
             else
+            {
                 user.Energy -= skin.Cost;
+                await _usersRepository.UpdateEnergyAfterTransaction(user);
+            }
         }
 
         user.Cat.Skin = skin;
@@ -138,5 +141,10 @@ public class UsersService : IUsersService
     public async Task<User> GetUserById(int id)
     {
         return await _usersRepository.GetUserById(id);
+    }
+
+    public async Task UpdateEnergy(User user)
+    {
+        await _usersRepository.UpdateEnergyAfterTransaction(user);
     }
 }

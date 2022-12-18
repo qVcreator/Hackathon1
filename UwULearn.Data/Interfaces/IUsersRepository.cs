@@ -10,6 +10,6 @@ public interface IUsersRepository
     public Task AddCourse(User user);
     public Task RemoveCourse(int userId, int courseId);
     public Task<User> GetUserById(int id);
-    public Task UpdateEnergyAfterBuy(User user);
+    public Task UpdateEnergyAfterTransaction(User user);
     public Task<bool> IsUserExist(string username);
 }

@@ -7,5 +7,6 @@ public class Lesson
     public string Description { get; set; }
     public string Text { get; set; }
     public string Video { get; set; } // url 
+    public TaskEntity Task {get; set;}
     public bool IsDeleted { get; set; }
 }

@@ -56,7 +56,7 @@ public class UsersRepository : IUsersRepository
         throw new NotImplementedException();
     }
 
-    public async Task UpdateEnergyAfterBuy(User user)
+    public async Task UpdateEnergyAfterTransaction(User user)
     {
         _context.Users.Update(user);
         await _context.SaveChangesAsync();

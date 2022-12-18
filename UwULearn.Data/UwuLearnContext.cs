@@ -52,6 +52,8 @@ public class UwuLearnContext : DbContext
             entity.ToTable(nameof(Lesson));
 
             entity.HasKey(l => l.Id);
+
+            entity.HasOne(l => l.Task);
         });
 
         modelBuilder.Entity<Skin>(entity =>
@@ -84,6 +86,8 @@ public class UwuLearnContext : DbContext
         modelBuilder.Entity<TaskEntity>(entity =>
         {
             entity.ToTable(nameof(TaskEntity));
+
+            entity.HasKey(t => t.Id);
         });
     }
 }
