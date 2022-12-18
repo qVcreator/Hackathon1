@@ -1,4 +1,5 @@
-﻿using UwULearn.Bussines.Interfaces;
+﻿using UwULearn.Bussines.Exceptions;
+using UwULearn.Bussines.Interfaces;
 using UwULearn.Bussines.Models;
 using UwULearn.Data.Entities;
 using UwULearn.Data.Enums;
@@ -13,6 +14,7 @@ public class UsersService : IUsersService
     private readonly IOrganizationService _organizationService;
     private readonly ICatsService _catsService;
     private readonly ISkinsService _skinsService;
+    private readonly ICoursesService _coursesService;
 
     public UsersService(
         IUsersRepository usersRepository,
@@ -26,14 +28,41 @@ public class UsersService : IUsersService
         _skinsService = skinsService;
     }
 
-    public Task AddCourse(int userId, int courseId)
+    public async Task AddCourse(int userId, int courseId)
     {
-        throw new NotImplementedException();
+        var user = await _usersRepository.GetUserById(userId);
+        var course = await _coursesService.Get(courseId);
+
+        if (course is null)
+            throw new NotFoundException("Такого курса нет");
+
+        if(!(user.Courses.Contains(course)))
+            user.Courses.Add(course);
     }
 
-    public Task<int> AddUser(User user)
+    public async Task<int> AddUser(AddUserModel user)
     {
-        throw new NotImplementedException();
+        if (await _usersRepository.IsUserExist(user.Username))
+            throw new UserAlreadyExistException($"Пользователь с таким именем уже существует");
+
+        var catId = await _catsService.CreateCat(new Cat
+        {
+            Health = 100,
+            Name = user.CatName,
+            Skin = await _skinsService.GetDeafaultSkin()
+        });
+
+        var cat = await _catsService.GetCat(catId);
+
+        var newUser = new User()
+        {
+            Username = user.Username,
+            Password = user.Password,
+            Cat = cat,
+            RegistrationDate = DateTime.UtcNow
+        };
+
+        return await _usersRepository.Adduser(newUser);
     }
 
     public async Task<int> AddAdmin(AddAdminModel admin)

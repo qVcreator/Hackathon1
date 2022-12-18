@@ -40,6 +40,11 @@ public class UsersRepository : IUsersRepository
         return await _context.Users.FirstOrDefaultAsync(q => q.Username == username);
     }
 
+    public Task<bool> IsUserExist(string username)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task RemoveCourse(int userId, int courseId)
     {
         throw new NotImplementedException();

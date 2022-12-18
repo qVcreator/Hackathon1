@@ -6,7 +6,7 @@ namespace UwULearn.Bussines.Interfaces;
 
 public interface IUsersService
 {
-    public Task<int> AddUser(User user);
+    public Task<int> AddUser(AddUserModel user);
     public Task<int> AddAdmin(AddAdminModel admin);
     public Task ChangePassword(UpdatePasswordModel updatePasswordModel); 
     public Task AddCourse(int userId, int courseId);
