@@ -48,7 +48,7 @@ public class CatsController : Controller
         return Ok(result);
     }
 
-    [HttpGet("{catId}/health")]
+    [HttpGet("{catId}")]
     [AuthorizeByRole(Role.Admin, Role.User)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
