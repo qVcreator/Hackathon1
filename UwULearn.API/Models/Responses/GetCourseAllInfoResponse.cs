@@ -4,5 +4,5 @@ namespace UwULearn2.API.Models.Responses;
 
 public class GetCourseAllInfoResponse : GetAllCoursesResponse
 {
-    public List<Lesson> Lessons { get; set; }
+    public List<LessonResponse> Lessons { get; set; }
 }

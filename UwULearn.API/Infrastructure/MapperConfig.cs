@@ -28,5 +28,14 @@ public class MapperConfig : Profile
         CreateMap<Lesson, LessonResponse>();
         CreateMap<Course, CourseResponse>();
         CreateMap<CourseProgress, CourseProgressResponse>();
+        CreateMap<AddUserRequest, AddUserModel>();
+        CreateMap<TaskRequest, TaskEntity>();
+
+        CreateMap<User, UserResponse>()
+            .ForMember(dest => dest.FriendList, opt => opt.Ignore());
+        CreateMap<AddAllChatMessageRequest, AllChatMessage>()
+            .ForPath(dest => dest.From.Id, opt => opt.MapFrom(src => src.From));
+        CreateMap<AllChatMessage, AllChatMessageResponse>()
+            .ForPath(dest => dest.Name, opt => opt.MapFrom(src => src.From.Username));
     }
 }

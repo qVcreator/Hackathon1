@@ -36,6 +36,7 @@ public class CoursesRepository : ICoursesRepository
     {
         return await _context.Courses
             .Include(c => c.Lessons)
+            .ThenInclude(c => c.Task)
             .FirstOrDefaultAsync(q => q.Id == courseId);
     }
 

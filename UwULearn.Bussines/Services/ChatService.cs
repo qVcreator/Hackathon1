@@ -7,14 +7,22 @@ namespace UwULearn.Bussines.Services;
 public class ChatService : IChatService
 {
     private readonly IChatRepository _chatRepository;
+    private readonly IUsersService _usersService;
 
-    public ChatService(IChatRepository chatRepository)
+    public ChatService(IChatRepository chatRepository, IUsersService usersService)
     {
         _chatRepository = chatRepository;
+        _usersService = usersService;
     }
 
-    public Task<int> PublishMessage(AllChatMessage message)
+    public async Task<List<AllChatMessage>> GetMessages()
     {
-        throw new NotImplementedException();
+        return await _chatRepository.GetMessages();
+    }
+
+    public async Task<int> PublishMessage(AllChatMessage message)
+    {
+        message.From = await _usersService.GetUserById(message.From.Id);
+        return await _chatRepository.PublishMessage(message);
     }
 }

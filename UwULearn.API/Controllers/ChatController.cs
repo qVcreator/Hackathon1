@@ -7,6 +7,7 @@ using UwULearn.Data.Enums;
 using UwULearn2.API.Extensions;
 using UwULearn2.API.Infrastructure;
 using UwULearn2.API.Models.Requests;
+using UwULearn2.API.Models.Responses;
 
 namespace UwULearn2.API.Controllers;
 
@@ -35,5 +36,15 @@ public class ChatController : Controller
         newMessage.From = (int)this.GetUserId()!;
         var result = await _chatService.PublishMessage(_mapper.Map<AllChatMessage>(newMessage));
         return Created(this.GetUri(), result);
+    }
+
+    [HttpGet]
+    [AuthorizeByRole(Role.User, Role.Admin)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<List<AllChatMessageResponse>>> GetMessages()
+    {
+        var result = await _chatService.GetMessages();
+        return Ok(_mapper.Map<List<AllChatMessageResponse>>(result));
     }
 }

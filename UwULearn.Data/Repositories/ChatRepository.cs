@@ -1,4 +1,5 @@
-﻿using UwULearn.Data.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
 namespace UwULearn.Data.Repositories;
@@ -10,8 +11,19 @@ public class ChatRepository : IChatRepository
     {
         _context = context;
     }
-    public Task PublishMessage(AllChatMessage message)
+
+    public async Task<List<AllChatMessage>> GetMessages()
     {
-        throw new NotImplementedException();
+        return await _context.AllChatMessages
+            .Include(c => c.From)
+            .Where(q => q.Date >= q.Date.AddHours(-1))
+            .ToListAsync();
+    }
+
+    public async Task<int> PublishMessage(AllChatMessage message)
+    {
+        await _context.AllChatMessages.AddAsync(message);
+        await _context.SaveChangesAsync();
+        return message.Id;
     }
 }
