@@ -23,13 +23,13 @@ public class MapperConfig : Profile
         CreateMap<AddAdminRequest, AddAdminModel>();
         CreateMap<AddCatRequest, Cat>();
         CreateMap<Cat, CatResponse>();
-        CreateMap<User, UsersResponse>();
         CreateMap<TaskEntity, TaskResponse>();
         CreateMap<Lesson, LessonResponse>();
         CreateMap<Course, CourseResponse>();
         CreateMap<CourseProgress, CourseProgressResponse>();
         CreateMap<AddUserRequest, AddUserModel>();
         CreateMap<TaskRequest, TaskEntity>();
+        CreateMap<User, UsersResponse>();
 
         CreateMap<User, UserResponse>()
             .ForMember(dest => dest.FriendList, opt => opt.Ignore());

@@ -16,16 +16,22 @@ public class CourseProgressRepository : ICourseProgressRepository
     public async Task<List<User>> GetLeaderBoardTopTen()
     {
         return await _context.CourseProgresses
+            .Include(c => c.User)
+            .ThenInclude(c => c.Cat)
+            .Include(c => c.User)
+            .ThenInclude( c => c.Courses)
             .OrderByDescending(q => q.FinishedTasks.Count)
             .Take(10)
             .Select(q => q.User)
-            .Include(u => u.Cat)
-            .Include(u => u.Courses)
             .ToListAsync();
     }
 
     public async Task<CourseProgress> GetProgressByUserId(int userId)
     {
-        return await _context.CourseProgresses.FirstOrDefaultAsync(q => q.User.Id == userId);
+        return await _context.CourseProgresses
+            .Include(c => c.User)
+            .Include(c => c.FinishedTasks)
+            .Include(c => c.FinishedCourses)
+            .FirstOrDefaultAsync(q => q.User.Id == userId);
     }
 }

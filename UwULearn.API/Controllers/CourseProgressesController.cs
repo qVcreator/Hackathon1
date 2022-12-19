@@ -29,7 +29,7 @@ public class CourseProgressesController : Controller
     public async Task<ActionResult<List<UsersResponse>>> GetLeaderBoardTopTen()
     {
         var result = await _courseProgressService.GetLeaderBoardTopTen();
-        return Ok(_mapper.Map<UsersResponse>(result));
+        return Ok(_mapper.Map<List<UsersResponse>>(result));
     }
 
     [HttpGet("user/{id}")]

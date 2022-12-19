@@ -1,4 +1,5 @@
-﻿using UwULearn.Bussines.Interfaces;
+﻿using UwULearn.Bussines.Exceptions;
+using UwULearn.Bussines.Interfaces;
 using UwULearn.Data.Entities;
 using UwULearn.Data.Interfaces;
 
@@ -22,8 +23,8 @@ public class CourseProgressService : ICourseProgressService
 
     public async Task<CourseProgress> GetProgressByUserId(int userId)
     {
-        if (_usersService.GetUserById(userId) == default)
-            throw new DirectoryNotFoundException();
+        if (await _usersService.GetUserById(userId) == default)
+            throw new NotFoundException("такого пользователя нет");
 
         return await _courseProgressRepository.GetProgressByUserId(userId);
     }
